@@ -5,7 +5,7 @@ Projeto acadêmico de **Análise Preditiva de Séries Temporais** desenvolvido c
 O foco é aplicar todo o fluxo analítico – da organização dos dados até a avaliação de modelos – em três conjuntos de dados reais de vendas.
 
 <small>
-Intergrantes:<br>
+Integrantes:<br>
 Laiane P. Da Silva - 32317230<br>
 Gabriela de Oliveira Tavares - 324116412<br>
 Thiago Thadeu Leal Santos - 324231402<br>
