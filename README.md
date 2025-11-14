@@ -1,9 +1,16 @@
 Analise Preditiva – Trabalho A3
 ================================
 
-Projeto acadêmico de **Análise Preditiva de Séries Temporais** desenvolvido como trabalho A3, seguindo o _“Guia Prático de Análise de Séries Temporais”_ (roteiro passo a passo do professor).  
+Projeto acadêmico de **Análise Preditiva de Séries Temporais** desenvolvido como trabalho A3, seguindo o _“Guia Prático de Análise de Séries Temporais”_ (roteiro passo a passo).  
 O foco é aplicar todo o fluxo analítico – da organização dos dados até a avaliação de modelos – em três conjuntos de dados reais de vendas.
 
+Intergrantes:
+Laiane P. Da Silva - 32317230
+Gabriela de Oliveira Tavares - 324116412
+Thiago Thadeu Leal Santos  - 324231402
+Marcos Vinicios Oliveira Santos - 325144209
+Lucas de Souza Antunes - 324214906   
+Larissa Felipe Reis - 32419802
 ---
 
 ## 1. Estrutura Geral do Projeto
