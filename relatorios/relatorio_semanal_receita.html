@@ -1,0 +1,85 @@
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Relatório de Série Temporal Semanal - Receita</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    h1, h2, h3 { color: #333; }
+    img { max-width: 960px; display:block; margin-bottom: 20px; }
+    pre { background:#f5f5f5; padding:10px; border-radius:4px; white-space: pre-wrap; }
+    table, th, td { border:1px solid #aaa; border-collapse: collapse; padding:6px; }
+    .muted { color:#666; font-size: 0.95em; }
+  </style>
+</head>
+<body>
+  <h1>Relatório de Série Temporal Semanal - Receita</h1>
+  <p class="muted">
+    Dataset: <b>Updated_sales.csv</b> • Frequência: <b>Semanal (W-MON)</b> • Horizonte: <b>12 semanas</b>
+    
+  </p>
+
+  <h2>Resumo da Série Semanal</h2>
+  <pre>count        23.000000
+mean     245237.887826
+std      315003.392335
+min           0.000000
+25%           0.000000
+50%           0.000000
+75%      495278.575000
+max      839812.220000
+
+Semanas: 23
+Período: 2019-04-01 a 2019-09-02
+Estacionariedade (ADF/KPSS): Mista / inconclusiva</pre>
+
+  <h2>Métricas por Modelo (Conjunto de Teste)</h2>
+  <table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>modelo</th>
+      <th>MAE</th>
+      <th>RMSE</th>
+      <th>MAPE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>SARIMAX</td>
+      <td>R$ 443.616,91</td>
+      <td>R$ 450.519,23</td>
+      <td>98,74%</td>
+    </tr>
+    <tr>
+      <td>HoltWinters</td>
+      <td>R$ 604.843,94</td>
+      <td>R$ 611.311,75</td>
+      <td>136,16%</td>
+    </tr>
+  </tbody>
+</table>
+
+  <h2>Modelo Vencedor</h2>
+  <p><b>SARIMAX</b>: SARIMAX(1, 1, 1) sazonal (0, 0, 0, 0)</p>
+
+  <h2>Análise de Resíduos</h2>
+  <pre>Ljung-Box p=0,9337; Jarque-Bera p=0,0042; Breusch-Pagan p=0,3556</pre>
+  <img src='figuras_semanal\residuos_semanal.png' alt='Resíduos do modelo'>
+
+  <h2>Gráficos</h2>
+  <h3>Série Semanal - Histórico</h3>
+  <img src="figuras_semanal\serie_semanal.png" alt="Série semanal">
+
+  <h3>Treino vs Teste com Previsão (SARIMAX)</h3>
+  <img src="figuras_semanal\treino_teste_semanal.png" alt="Treino vs Teste">
+
+  <h3>Previsão para as Próximas 12 Semanas (SARIMAX)</h3>
+  <img src="figuras_semanal\previsao_12_semanas.png" alt="Previsão 12 semanas">
+  <h3>Valores Previstos</h3>
+  <table><tr><th>Semana</th><th>Previsão de Receitas</th></tr><tr><td>2019-09-09</td><td>R$ 329.479,09</td></tr><tr><td>2019-09-16</td><td>R$ 342.227,07</td></tr><tr><td>2019-09-23</td><td>R$ 334.539,18</td></tr><tr><td>2019-09-30</td><td>R$ 339.175,50</td></tr><tr><td>2019-10-07</td><td>R$ 336.379,49</td></tr><tr><td>2019-10-14</td><td>R$ 338.065,67</td></tr><tr><td>2019-10-21</td><td>R$ 337.048,79</td></tr><tr><td>2019-10-28</td><td>R$ 337.662,04</td></tr><tr><td>2019-11-04</td><td>R$ 337.292,21</td></tr><tr><td>2019-11-11</td><td>R$ 337.515,24</td></tr><tr><td>2019-11-18</td><td>R$ 337.380,73</td></tr><tr><td>2019-11-25</td><td>R$ 337.461,85</td></tr></table>
+
+  
+  
+
+</body>
+</html>

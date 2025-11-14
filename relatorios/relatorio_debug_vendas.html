@@ -1,0 +1,63 @@
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Relatório de Série Temporal - Debug Vendas</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1, h2, h3 { color: #333; }
+        img { max-width: 960px; display:block; margin-bottom: 20px; }
+        pre { background:#f5f5f5; padding:10px; border-radius:4px; white-space: pre-wrap; }
+        table, th, td { border:1px solid #aaa; border-collapse: collapse; padding:6px; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .muted { color:#666; font-size: 0.95em; }
+    </style>
+</head>
+<body>
+    <h1>Relatório de Série Temporal - Debug Vendas</h1>
+
+    <p class="muted">
+        Dataset: <b>Updated_sales.csv</b> • Variável: <b>Receita (R$)</b> • Frequência: <b>Mensal</b> • Horizonte: <b>3 meses</b>
+    </p>
+
+    <h2>Resumo dos Dados</h2>
+    <pre>count    6.000000e+00
+mean     9.400786e+05
+std      1.495809e+06
+min      0.000000e+00
+25%      5.241850e+02
+50%      6.328015e+03
+75%      1.684376e+06
+max      3.385500e+06
+
+n pontos mensais: 6
+Período coberto: 2019-04 a 2019-09</pre>
+
+    <h2>Métricas no Conjunto de Teste</h2>
+    <table>
+        <tr><th>Métrica</th><th>Valor</th></tr>
+        <tr><td>MAE</td><td>R$ 4.258.984,94</td></tr>
+        <tr><td>RMSE</td><td>R$ 4.280.884,81</td></tr>
+        <tr><td>MAPE (%)</td><td>91.353,99%</td></tr>
+    </table>
+
+    <h2>Descrição do Modelo</h2>
+    <p>Holt-Winters (tendência aditiva, sem sazonalidade) Atenção: série curta (menos de 24 meses); previsão de curto prazo e sem sazonalidade anual confiável.</p>
+
+    <div class="grid">
+      <div>
+        <h2>Série Original</h2>
+        <img src="figuras_debug_vendas\serie.png" alt="Série temporal">
+      </div>
+      <div>
+        <h2>Previsão para os Próximos 3 Meses — dataset: Updated_sales.csv</h2>
+        <img src="figuras_debug_vendas\previsao_3meses.png" alt="Previsão 3 meses">
+        <h3>Valores Previstos</h3>
+        <table><tr><th>Mês</th><th>Previsão</th></tr><tr><td>2019-10</td><td>R$ 0,00</td></tr><tr><td>2019-11</td><td>R$ 0,00</td></tr><tr><td>2019-12</td><td>R$ 0,00</td></tr></table>
+      </div>
+    </div>
+
+    <h2>Treino vs Teste (Previsão no Teste)</h2>
+    <img src="figuras_debug_vendas\treino_teste.png" alt="Treino vs Teste">
+</body>
+</html>

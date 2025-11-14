@@ -1,0 +1,67 @@
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Relatório de Série Temporal - Retail Mensal Total</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1, h2, h3 { color: #333; }
+        img { max-width: 960px; display:block; margin-bottom: 20px; }
+        pre { background:#f5f5f5; padding:10px; border-radius:4px; white-space: pre-wrap; }
+        table, th, td { border:1px solid #aaa; border-collapse: collapse; padding:6px; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .muted { color:#666; font-size: 0.95em; }
+    </style>
+</head>
+<body>
+    <h1>Relatório de Série Temporal - Retail Mensal Total</h1>
+
+    <p class="muted">
+        Dataset: <b>Retail and wherehouse Sale.csv</b> • Variável: <b>Total Sales (retail + transfers + warehouse)</b> • Frequência: <b>Mensal</b> • Horizonte: <b>3 meses</b>
+    </p>
+
+    <h2>Resumo dos Dados</h2>
+    <pre>   count: 9
+    mean: 136.548,85
+     std: 226.074,85
+     min: 0,00
+     25%: 0,00
+     50%: 0,00
+     75%: 182.334,20
+     max: 595.339,95
+
+n pontos mensais: 9
+Período coberto: 2020-01 a 2020-09</pre>
+
+    <h2>Métricas no Conjunto de Teste</h2>
+    <table>
+        <tr><th>Métrica</th><th>Valor</th></tr>
+        <tr><td>MAE</td><td>816.209,26</td></tr>
+        <tr><td>RMSE</td><td>827.095,51</td></tr>
+        <tr><td>MAPE (%)</td><td>5.642,90%</td></tr>
+    </table>
+
+    <h2>Descrição do Modelo</h2>
+    <p>Holt-Winters (tendência aditiva, sem sazonalidade) Atenção: série curta (menos de 24 meses); previsão de curto prazo e sem sazonalidade anual confiável.</p>
+
+    <h2>Análise de Resíduos</h2>
+    <pre>Ljung-Box p=0,2234; Jarque-Bera p=0,8312; Breusch-Pagan p=0,5138</pre>
+    <img src='residuos_retail_mensal_total.png' alt='Resíduos do modelo'>
+
+    <div class="grid">
+      <div>
+        <h2>Série Original</h2>
+        <img src="figuras_retail_mensal_total\serie.png" alt="Série temporal">
+      </div>
+      <div>
+        <h2>Previsão para os Próximos 3 Meses — dataset: Retail and wherehouse Sale.csv</h2>
+        <img src="figuras_retail_mensal_total\previsao_3meses.png" alt="Previsão 3 meses">
+        <h3>Valores Previstos</h3>
+        <table><tr><th>Mês</th><th>Previsão</th></tr><tr><td>2020-10</td><td>75.346,93</td></tr><tr><td>2020-11</td><td>50.960,96</td></tr><tr><td>2020-12</td><td>26.574,99</td></tr></table>
+      </div>
+    </div>
+
+    <h2>Treino vs Teste (Previsão no Teste)</h2>
+    <img src="figuras_retail_mensal_total\treino_teste.png" alt="Treino vs Teste">
+</body>
+</html>

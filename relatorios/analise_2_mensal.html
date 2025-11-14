@@ -1,0 +1,80 @@
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Análise 2 – Previsão Mensal</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    h1, h2, h3 { color: #333; }
+    img { max-width: 960px; display:block; margin-top: 10px; }
+    pre { background:#f5f5f5; padding:10px; border-radius:4px; white-space: pre-wrap; }
+    table, th, td { border:1px solid #aaa; border-collapse: collapse; padding:6px; }
+    th { background:#f0f0f0; }
+    .muted { color:#666; font-size: 0.95em; }
+  </style>
+</head>
+<body>
+  <h1>Análise 2 – Previsão Mensal</h1>
+  <p class="muted">Dataset: <b>Sales_2019 (12 meses)</b> • Horizonte: <b>3 meses</b></p>
+
+  <h2>Métricas dos modelos</h2>
+  <table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Modelo</th>
+      <th>MAE</th>
+      <th>RMSE</th>
+      <th>MAPE%</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>SARIMAX</td>
+      <td>R$ 1.749.386,14</td>
+      <td>R$ 1.843.882,09</td>
+      <td>44,20%</td>
+    </tr>
+    <tr>
+      <td>HoltWinters</td>
+      <td>R$ 2.148.179,53</td>
+      <td>R$ 2.257.437,40</td>
+      <td>54,46%</td>
+    </tr>
+  </tbody>
+</table>
+
+  <h2>Melhor modelo</h2>
+  <p><b>SARIMAX</b></p>
+
+  <h2>Análise de Resíduos</h2>
+  <pre>Ljung-Box p=0,2969; Jarque-Bera p=0,2842; Breusch-Pagan p=0,0118</pre>
+  <img src='residuos_analise2.png' alt='Resíduos do modelo'>
+
+  <h2>Previsão dos próximos 3 meses</h2>
+  <table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Mês</th>
+      <th>Previsão de Receita</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>2019-10</td>
+      <td>R$ 2.100.438,09</td>
+    </tr>
+    <tr>
+      <td>2019-11</td>
+      <td>R$ 2.100.584,72</td>
+    </tr>
+    <tr>
+      <td>2019-12</td>
+      <td>R$ 2.100.592,19</td>
+    </tr>
+  </tbody>
+</table>
+
+  <h2>Série completa e previsões</h2>
+  <img src="plot_analise2.png" alt="Análise 2 – Previsão Mensal (12 meses de 2019)">
+</body>
+</html>

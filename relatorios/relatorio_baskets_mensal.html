@@ -1,0 +1,60 @@
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Relatório de Série Temporal - Baskets Mensal</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1, h2, h3 { color: #333; }
+        img { max-width: 960px; display:block; margin-bottom: 20px; }
+        pre { background:#f5f5f5; padding:10px; border-radius:4px; white-space: pre-wrap; }
+        table, th, td { border:1px solid #aaa; border-collapse: collapse; padding:6px; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .muted { color:#666; font-size: 0.95em; }
+    </style>
+</head>
+<body>
+    <h1>Relatório de Série Temporal - Baskets Mensal</h1>
+
+    <p class="muted">
+        Dataset: <b>basket_details.csv</b> • Variável: <b>Basket Count</b> • Frequência: <b>Mensal</b> • Horizonte: <b>3 meses</b>
+    </p>
+
+    <h2>Resumo dos Dados</h2>
+    <pre>count        2.000000
+mean     16153.000000
+std       4321.836647
+min      13097.000000
+25%      14625.000000
+50%      16153.000000
+75%      17681.000000
+max      19209.000000</pre>
+
+    <h2>Métricas no Conjunto de Teste</h2>
+    <table>
+        <tr><th>Métrica</th><th>Valor</th></tr>
+        <tr><td>MAE</td><td>6.112,00</td></tr>
+        <tr><td>RMSE</td><td>6.112,00</td></tr>
+        <tr><td>MAPE (%)</td><td>46,67%</td></tr>
+    </table>
+
+    <h2>Descrição do Modelo</h2>
+    <p>Naïve (média histórica) — dados insuficientes para modelagem</p>
+
+    <div class="grid">
+      <div>
+        <h2>Série Original</h2>
+        <img src="figuras_baskets_mensal\serie.png" alt="Série temporal">
+      </div>
+      <div>
+        <h2>Previsão para os Próximos 3 Meses — dataset: basket_details.csv</h2>
+        <img src="figuras_baskets_mensal\previsao_3meses.png" alt="Previsão 3 meses">
+        <h3>Valores Previstos</h3>
+        <table><tr><th>Mês</th><th>Previsão</th></tr><tr><td>2019-06</td><td>16.153,00</td></tr><tr><td>2019-07</td><td>16.153,00</td></tr><tr><td>2019-08</td><td>16.153,00</td></tr></table>
+      </div>
+    </div>
+
+    <h2>Treino vs Teste (Previsão no Teste)</h2>
+    <img src="figuras_baskets_mensal\treino_teste.png" alt="Treino vs Teste">
+</body>
+</html>

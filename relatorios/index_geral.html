@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Analise Preditiva trabalho a3</title>
+
+    <style>
+
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+
+        }
+
+        body {
+
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+
+            background: #f8f9fa;
+
+            min-height: 100vh;
+
+            padding: 40px 20px;
+
+        }
+
+        .container {
+
+            max-width: 900px;
+
+            margin: 0 auto;
+
+        }
+
+        header {
+
+            background: white;
+
+            padding: 40px;
+
+            border-radius: 8px;
+
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+
+            margin-bottom: 30px;
+
+            border: 1px solid #e2e8f0;
+
+        }
+
+        h1 {
+
+            color: #2d3748;
+
+            font-size: 2rem;
+
+            margin-bottom: 8px;
+
+        }
+
+        .subtitle {
+
+            color: #718096;
+
+            font-size: 0.95rem;
+
+        }
+
+        .section {
+
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 8px;
+
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+
+            margin-bottom: 20px;
+
+            border: 1px solid #e2e8f0;
+
+        }
+
+        .section-title {
+
+            color: #2d3748;
+
+            font-size: 1.3rem;
+
+            margin-bottom: 20px;
+
+            padding-bottom: 12px;
+
+            border-bottom: 2px solid #e2e8f0;
+
+        }
+
+        .report-list {
+
+            list-style: none;
+
+        }
+
+        .report-item {
+
+            margin-bottom: 12px;
+
+        }
+
+        .report-link {
+
+            display: flex;
+
+            align-items: center;
+
+            padding: 14px 18px;
+
+            background: #f7fafc;
+
+            border-radius: 8px;
+
+            text-decoration: none;
+
+            color: #2d3748;
+
+            transition: all 0.2s;
+
+            border: 1px solid #e2e8f0;
+
+        }
+
+        .report-link:hover {
+
+            background: #2563eb;
+
+            color: white;
+
+            transform: translateX(4px);
+
+            border-color: #2563eb;
+
+        }
+
+        .report-icon {
+
+            width: 20px;
+
+            height: 20px;
+
+            margin-right: 12px;
+
+            opacity: 0.7;
+
+        }
+
+        .report-link:hover .report-icon {
+
+            opacity: 1;
+
+        }
+
+        @media (max-width: 600px) {
+
+            body {
+
+                padding: 20px 15px;
+
+            }
+
+            header, .section {
+
+                padding: 25px;
+
+            }
+
+            h1 {
+
+                font-size: 1.6rem;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <header>
+
+            <h1>Analise Preditiva trabalho a3</h1>
+
+            <p class="subtitle">Relatórios e visualizações de datasets</p>
+
+        </header>
+
+        <div class="section">
+
+            <h2 class="section-title">Análise 1 – Vendas (Updated_sales)</h2>
+
+            <ul class="report-list">
+
+                <li class="report-item">
+
+                    <a href="relatorio_vendas_mensal_receita.html" class="report-link">
+
+                        <svg class="report-icon" fill="currentColor" viewBox="0 0 20 20">
+
+                            <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/>
+
+                        </svg>
+
+                        Relatório Mensal de Receita
+
+                    </a>
+
+                </li>
+
+                <li class="report-item">
+
+                    <a href="relatorio_semanal_receita.html" class="report-link">
+
+                        <svg class="report-icon" fill="currentColor" viewBox="0 0 20 20">
+
+                            <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/>
+
+                        </svg>
+
+                        Relatório Semanal de Receita
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+        <div class="section">
+
+            <h2 class="section-title">Análise 2 – Previsão (Sales_2019)</h2>
+
+            <ul class="report-list">
+
+                <li class="report-item">
+
+                    <a href="analise_2_mensal.html" class="report-link">
+
+                        <svg class="report-icon" fill="currentColor" viewBox="0 0 20 20">
+
+                            <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
+
+                        </svg>
+
+                        Previsão Mensal
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+        <div class="section">
+
+            <h2 class="section-title">Análise 3 – Retail & Warehouse</h2>
+
+            <ul class="report-list">
+
+                <li class="report-item">
+
+                    <a href="relatorio_retail_mensal_total.html" class="report-link">
+
+                        <svg class="report-icon" fill="currentColor" viewBox="0 0 20 20">
+
+                            <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/>
+
+                        </svg>
+
+                        Relatório Mensal
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+        <div class="section">
+
+            <h2 class="section-title">Análise Demográfica</h2>
+
+            <ul class="report-list">
+
+                <li class="report-item">
+
+                    <a href="relatorio_demografia.html" class="report-link">
+
+                        <svg class="report-icon" fill="currentColor" viewBox="0 0 20 20">
+
+                            <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/>
+
+                        </svg>
+
+                        Relatório Mensal
+
+                    </a>
+
+                </li>
+
+                <li class="report-item">
+
+                    <a href="relatorio_demografia_semanal.html" class="report-link">
+
+                        <svg class="report-icon" fill="currentColor" viewBox="0 0 20 20">
+
+                            <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/>
+
+                        </svg>
+
+                        Relatório Semanal
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
