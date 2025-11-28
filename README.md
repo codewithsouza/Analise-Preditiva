@@ -7,7 +7,6 @@ Projeto acadêmico de Análise Preditiva de Séries Temporais desenvolvido como 
 - Laiane P. Da Silva - 32317230
 - Gabriela de Oliveira Tavares - 324116412
 - Thiago Thadeu Leal Santos - 324231402
-- Marcos Vinicios Oliveira Santos - 325144209
 - Lucas de Souza Antunes - 324214906
 - Larissa Felipe Reis - 32419802
 
