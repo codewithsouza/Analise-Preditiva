@@ -1,307 +1,266 @@
-Analise Preditiva – Trabalho A3
-================================
+# Análise Preditiva - Trabalho A3
 
-Projeto acadêmico de **Análise Preditiva de Séries Temporais** desenvolvido como trabalho A3, seguindo o _“Guia Prático de Análise de Séries Temporais”_ (roteiro passo a passo).  
-O foco é aplicar todo o fluxo analítico – da organização dos dados até a avaliação de modelos – em três conjuntos de dados reais de vendas.
+Projeto acadêmico de Análise Preditiva de Séries Temporais desenvolvido como trabalho A3, seguindo o Guia Prático de Análise de Séries Temporais (roteiro passo a passo). O foco é aplicar todo o fluxo analítico, da organização dos dados até a avaliação de modelos, em três conjuntos de dados reais de vendas.
 
-<small>
-Integrantes:<br>
-Laiane P. Da Silva - 32317230<br>
-Gabriela de Oliveira Tavares - 324116412<br>
-Thiago Thadeu Leal Santos - 324231402<br>
-Marcos Vinicios Oliveira Santos - 325144209<br>
-Lucas de Souza Antunes - 324214906<br>
-Larissa Felipe Reis - 32419802<br>
-</small>
+## Integrantes
 
----
+- Laiane P. Da Silva - 32317230
+- Gabriela de Oliveira Tavares - 324116412
+- Thiago Thadeu Leal Santos - 324231402
+- Marcos Vinicios Oliveira Santos - 325144209
+- Lucas de Souza Antunes - 324214906
+- Larissa Felipe Reis - 32419802
 
-## 1. Estrutura Geral do Projeto
+## Estrutura do Projeto
 
-Pasta de trabalho (raiz do repositório):
+### Datasets
 
-- `Updated_sales.csv`  
-  Dataset de vendas diárias (linhas de pedido) para a **Análise 1**.
+- **Updated_sales.csv**: Dataset de vendas diárias (linhas de pedido) para a Análise 1
+- **Sales_Data/**: Arquivos Sales_January_2019.csv a Sales_December_2019.csv, com vendas mensais de 2019, usados na Análise 2
+- **Retail and wherehouse Sale.csv**: Dataset consolidado por YEAR e MONTH, com colunas de vendas de varejo e armazém, usado na Análise 3
 
-- `Sales_Data/`  
-  Arquivos `Sales_January_2019.csv` … `Sales_December_2019.csv`, com vendas mensais de 2019, usados na **Análise 2**.
+### Scripts Principais
 
-- `Retail and wherehouse Sale.csv`  
-  Dataset consolidado por `YEAR` e `MONTH`, com colunas de vendas de varejo e armazém, usado na **Análise 3**.
+- **gerar_relatorios_series.py**: Análises mensais (Updated_sales e Retail & Warehouse)
+- **relatorio_semanal.py**: Análise semanal do Updated_sales.csv
+- **analise_2_mensal.py**: Análise mensal do ano fechado Sales_2019 (12 meses)
+- **index_geral.py**: Gera o índice geral em HTML (menu principal)
 
-- Scripts principais:
-  - `gerar_relatorios_series.py` – análises mensais (Updated_sales e Retail & Warehouse).
-  - `relatorio_semanal.py` – análise semanal do `Updated_sales.csv`.
-  - `analise_2_mensal.py` – análise mensal do ano-fechado `Sales_2019` (12 meses).
-  - `index_geral.py` – gera o índice geral em HTML (menu principal).
+### Outros Arquivos
 
-- Outros arquivos relevantes:
-  - `relatorio_semanal.py` e `gerar_relatorios_series.py` utilizam a pasta `relatorios/` para salvar todos os HTMLs, imagens e índices.
-  - `requirements.txt` – dependências Python.
+- **relatorios/**: Pasta de saída para todos os relatórios HTML, imagens e índices
+- **requirements.txt**: Lista de dependências Python
 
----
+## Objetivos das Análises
 
-## 2. Objetivos das Análises
+As três análises seguem a mesma filosofia metodológica, com granularidades e horizontes adaptados a cada dataset.
 
-As três análises seguem a mesma filosofia, com granularidades e horizontes adaptados a cada dataset.
+### Análise 1: Updated_sales (dataset completo e diário)
 
-### 2.1 Análise 1 – Updated_sales (dataset completo e diário)
+**Objetivo**: Analisar e prever a receita de vendas.
 
-- **Objetivo:** analisar e prever a receita de vendas:
-  - **Semanal:** horizonte de 12 semanas à frente.
-  - **Mensal:** horizonte de 3 meses à frente (previsão ilustra­ tiva, devido à série curta e irregular).
-- **Frequências utilizadas:**
-  - Diário → usado apenas na preparação.
-  - Semanal (`W-MON`) – principal para previsão.
-  - Mensal (`MS`) – para visão agregada e ilustrações de curto prazo.
+- **Semanal**: Horizonte de 12 semanas à frente
+- **Mensal**: Horizonte de 3 meses à frente (previsão ilustrativa, devido à série curta e irregular)
 
-### 2.2 Análise 2 – Sales_2019 (12 meses)
+**Frequências utilizadas**:
+- Diário: Utilizado apenas na preparação
+- Semanal (W-MON): Principal para previsão
+- Mensal (MS): Utilizada para visão agregada
 
-- **Objetivo:** analisar o comportamento da receita mensal de 2019 e prever os **3 meses subsequentes**.
-- Dataset: concatenação dos arquivos `Sales_*.csv` de 2019.
-- Frequência: **mensal**.
+### Análise 2: Sales_2019 (12 meses)
 
-### 2.3 Análise 3 – Retail & Warehouse (9 meses)
+**Objetivo**: Analisar o comportamento da receita mensal de 2019 e prever os três meses subsequentes.
 
-- **Objetivo:** prever a receita mensal consolidada (soma de Retail Sales, Retail Transfers e Warehouse Sales) para **3 meses à frente**.
-- Dataset: `Retail and wherehouse Sale.csv`.
-- Frequência: **mensal** (série curta, 9 meses).
+- **Dataset**: Concatenação dos arquivos Sales_*.csv de 2019
+- **Frequência**: Mensal
 
----
+### Análise 3: Retail & Warehouse (9 meses)
 
-## 3. Roteiro Metodológico (Guia de Séries Temporais)
+**Objetivo**: Prever a receita mensal consolidada (soma de Retail Sales, Retail Transfers e Warehouse Sales) para três meses à frente.
 
-As análises seguem o roteiro didático do professor, contemplando os seguintes passos:
+- **Dataset**: Retail and wherehouse Sale.csv
+- **Frequência**: Mensal (série curta, nove meses)
 
-1. **Definir o objetivo**  
-   - Variável‐alvo, horizonte de previsão e frequência (diária, semanal, mensal).
+## Metodologia
 
-2. **Carregar e organizar os dados**  
-   - Conversão de datas, ordenação temporal, remoção de duplicatas, ajuste de frequência (`asfreq`).
+As análises seguem o roteiro didático estabelecido, compreendendo as seguintes etapas:
 
-3. **Verificar dados faltantes**  
-   - Contagem de missings antes/depois.  
-   - Interpolação (receita) e _forward/backward fill_ para contagens.
+### 1. Definição do Objetivo
 
-4. **Identificar outliers**  
-   - Detecção por **z‑score** e **IQR** (quartis).  
-   - Winsorização via `clip` para reduzir distorções sem remover eventos reais.
+Especificação da variável alvo, horizonte de previsão e frequência (diária, semanal, mensal).
 
-5. **Estatísticas descritivas**  
-   - `count`, média, desvio‐padrão, mínimo, máximo, quantis.  
-   - Resumos formatados em reais (`R$`) para as séries de receita.
+### 2. Carregamento e Organização dos Dados
 
-6. **Visualizar a série**  
-   - Gráficos de linha (histórico semanal/mensal), com indicação de períodos de treino e teste.
+- Conversão de datas
+- Ordenação temporal
+- Remoção de duplicatas
+- Ajuste de frequência
 
-7. **Decomposição da série**  
-   - Decomposição aditiva semanal (quando há dados suficientes) em tendência, sazonalidade e ruído.
+### 3. Tratamento de Valores Faltantes
 
-8. **Testar estacionariedade**  
-   - Testes **ADF (Dickey‑Fuller)** e **KPSS** para a série semanal, com interpretação textual.
-
-9. **Identificar padrões e características**  
-   - Decisão entre modelos com/sem sazonalidade, modelos ingênuos (naïve) e modelos clássicos (Holt‑Winters, SARIMAX).
-
-10. **Selecionar e ajustar modelos clássicos**  
-    - **Holt‑Winters** (tendência aditiva, com ou sem sazonalidade).  
-    - **SARIMAX(1,1,1)** com sazonalidade quando há dados suficientes.  
-    - Em séries curtas, uso de modelos **sem componente sazonal**.
-
-11. **Dividir em treino e teste**  
-    - Split temporal **80% treino / 20% teste** (ou 9/3 meses para o Sales_2019).  
-    - Nunca há embaralhamento; a ordem temporal é preservada.
-
-12. **Avaliar desempenho dos modelos**  
-    - Métricas **MAE**, **RMSE** e **MAPE** em conjunto de teste.  
-    - Comparação Holt‑Winters × SARIMAX, escolha do modelo vencedor.
+- Contagem antes e depois da interpolação
+- Interpolação linear para receita
+- Forward/backward fill para contagens
 
-13. **Analisar resíduos** – (implementado)
-    - **Gráfico de resíduos** do modelo vencedor em todas as análises de série temporal:
-      - Semanal (Updated_sales).
-      - Mensal (Updated_sales, Sales_2019, Retail & Warehouse).
-    - Verificação visual de:
-      - ausência de tendência nos resíduos,
-      - variância aproximadamente constante,
-      - presença de ruído branco.
-
-14. **Detectar anomalias**  
-    - Tratamento de outliers já contemplado no passo 4 (z‑score/IQR).  
-    - Para o escopo do trabalho A3, técnicas mais avançadas (Isolation Forest, DBSCAN) são consideradas como extensões futuras.
+### 4. Identificação de Outliers
 
-15. **Testes estatísticos finais (resíduos)** – (implementado)
-    - Para o modelo vencedor de cada análise:
-      - **Ljung‑Box**: autocorrelação dos resíduos.  
-      - **Jarque‑Bera**: normalidade dos resíduos.  
-      - **Breusch‑Pagan**: heterocedasticidade.  
-    - Os p‑valores são apresentados em texto nos relatórios HTML, acompanhados do gráfico de resíduos.
+- Detecção por escore Z e intervalo interquartílico (IQR)
+- Winsorização via clip para reduzir distorções sem remover eventos reais
 
----
+### 5. Estatísticas Descritivas
 
-## 4. Scripts e Relatórios Gerados
+- Cálculo de média, desvio padrão, mínimos, máximos e quantis
+- Resumos formatados em reais para as séries de receita
 
-### 4.1 `gerar_relatorios_series.py` – Análises Mensais
+### 6. Visualização da Série
 
-Responsável por gerar relatórios mensais em HTML dentro da pasta `relatorios/`.
+Gráficos de linha com histórico, treino e teste.
 
-- **Para `Updated_sales.csv`:**
-  - Agregação mensal da receita.
-  - Modelo **ingênuo**: previsão mensal repete o último valor de receita observado (devido à série curta e irregular).  
-  - Métricas MAE/RMSE/MAPE no teste.  
-  - Gráficos:
-    - Série mensal histórica.
-    - Treino vs teste com previsão.
-    - Previsão dos próximos 3 meses.  
-  - **Análise de resíduos:** gráfico e testes Ljung‑Box, Jarque‑Bera e Breusch‑Pagan (resíduos calculados em relação ao modelo ingênuo).
+### 7. Decomposição da Série
 
-- **Para `Retail and wherehouse Sale.csv`:**
-  - Construção de `total_sales = RETAIL SALES + RETAIL TRANSFERS + WAREHOUSE SALES`.  
-  - Série mensal de `total_sales` (MS).  
-  - Modelo Holt‑Winters ou SARIMAX (sem sazonalidade, pela curta extensão).  
-  - Métricas e previsões 3 meses à frente.  
-  - **Resíduos:** gráfico e testes Ljung‑Box, Jarque‑Bera e Breusch‑Pagan.
+Decomposição aditiva semanal (quando há dados suficientes) em tendência, sazonalidade e ruído.
 
-Arquivos gerados principais:
+### 8. Testes de Estacionariedade
 
-- `relatorios/relatorio_vendas_mensal_receita.html`  
-- `relatorios/relatorio_retail_mensal_total.html`  
-- `relatorios/index.html` (índice simples mensal)  
-- CSVs com previsões: `previsao_3meses_*.csv`  
-- Imagens em `relatorios/figuras_*/*.png`
+- Testes ADF (Dickey-Fuller)
+- KPSS
+- Interpretação textual dos resultados
 
+### 9. Seleção de Modelos
 
-### 4.2 `relatorio_semanal.py` – Análise Semanal (Updated_sales)
+Decisão entre modelos com ou sem sazonalidade, modelos ingênuos e modelos clássicos (Holt-Winters, SARIMAX).
 
-Fluxo de análise semanal para o dataset mais granular.
+### 10. Ajuste de Modelos
 
-- Agregação semanal (`W-MON`) da receita (`revenue`), número de pedidos (`orders`) e unidades (`units`).  
-- Tratamento de faltantes e outliers em `revenue`.  
-- Ajuste de **Holt‑Winters** e **SARIMAX**, com ou sem sazonalidade semanal (52), dependendo do número de semanas disponíveis.  
-- Comparação de modelos com MAE/RMSE/MAPE e escolha do melhor.
-- **Previsão de 12 semanas** à frente com o modelo vencedor.
-- **Análise de resíduos** do modelo vencedor:
-  - Gráfico de resíduos.  
-  - Testes Ljung‑Box, Jarque‑Bera, Breusch‑Pagan.
-- Testes ADF e KPSS com comentário textual sobre estacionariedade.
+- **Holt-Winters**: Tendência aditiva, com ou sem sazonalidade
+- **SARIMAX(1,1,1)**: Com sazonalidade quando há dados suficientes
 
-Arquivos gerados:
+### 11. Divisão Temporal
 
-- `relatorios/relatorio_semanal_receita.html`  
-- `relatorios/index_semanal.html`  
-- Imagens em `relatorios/figuras_semanal/*.png`
+Split 80% treino e 20% teste (ou 9/3 meses para Sales_2019). A ordem temporal é preservada.
 
+### 12. Avaliação de Desempenho
 
-### 4.3 `analise_2_mensal.py` – Análise 2 (Sales_2019 – 12 meses)
+- Métricas MAE, RMSE e MAPE no conjunto de teste
+- Comparação entre Holt-Winters e SARIMAX
 
-Análise específica do ano fechado de 2019, usando os arquivos `Sales_*.csv`.
+### 13. Análise de Resíduos
 
-- Concatenação dos dados mensais e cálculo da receita mensal.  
-- Split fixo: **9 meses de treino / 3 de teste**.  
-- Ajuste de:
-  - Holt‑Winters (trend aditivo, sem sazonalidade).  
-  - SARIMAX(1,1,1) sem componente sazonal forte (seasonal neutro).  
-- Comparação de MAE/RMSE/MAPE e escolha do melhor modelo.
-- Previsão dos **3 meses seguintes**.  
-- **Análise de resíduos** do modelo vencedor (Holt‑Winters ou SARIMAX):
-  - Gráfico de resíduos.  
-  - Testes Ljung‑Box, Jarque‑Bera, Breusch‑Pagan.
+- Geração de gráficos
+- Testes Ljung-Box, Jarque-Bera e Breusch-Pagan
 
-Arquivo gerado:
+### 14. Detecção de Anomalias
 
-- `relatorios/analise_2_mensal.html`  
-- Imagem: `relatorios/plot_analise2.png`  
-- Resíduos: `relatorios/residuos_analise2.png`
+Tratamento de outliers conforme metodologia estabelecida.
 
+### 15. Testes Estatísticos Finais
 
-### 4.4 `index_geral.py` – Menu Geral
+- **Ljung-Box**: Autocorrelação
+- **Jarque-Bera**: Normalidade
+- **Breusch-Pagan**: Heterocedasticidade
 
-Gera um **dashboard estático** em HTML com links organizados para todos os relatórios:
+## Scripts e Relatórios Gerados
 
-- `relatorios/index_geral.html`
-  - Análise 1 – Vendas (Updated_sales):
-    - Relatório Mensal de Receita
-    - Relatório Semanal de Receita
-  - Análise 2 – Previsão (Sales_2019)
-  - Análise 3 – Retail & Warehouse
-  - Relatórios de Demografia (quando existir `customer_details.csv`)
+### gerar_relatorios_series.py - Análises Mensais
 
----
+Gera relatórios mensais em HTML na pasta relatorios/.
 
-## 5. Como Executar o Projeto
+**Para Updated_sales.csv**:
+- Agregação mensal da receita
+- Modelo ingênuo (repete o último valor observado)
+- Cálculo de métricas MAE, RMSE e MAPE
+- Gráficos de série histórica, treino versus teste e previsão de três meses
+- Testes Ljung-Box, Jarque-Bera e Breusch-Pagan sobre os resíduos
 
-Pré‐requisitos:
+**Para Retail and wherehouse Sale.csv**:
+- Cálculo de total_sales = RETAIL SALES + RETAIL TRANSFERS + WAREHOUSE SALES
+- Modelos Holt-Winters ou SARIMAX (sem sazonalidade, devido à curta série)
+- Avaliação com métricas e previsão de três meses
 
-- Python 3.10+ (testado em 3.12).
-- Instalar dependências:
+**Saídas**:
+- relatorios/relatorio_vendas_mensal_receita.html
+- relatorios/relatorio_retail_mensal_total.html
+- relatorios/index.html
+- CSVs previsao_3meses_*.csv
+- Imagens relatorios/figuras_*/*.png
 
+### relatorio_semanal.py - Análise Semanal (Updated_sales)
+
+Executa a análise semanal para o dataset mais detalhado.
+
+**Processamento**:
+- Agregação semanal da receita, número de pedidos e unidades
+- Tratamento de valores faltantes e outliers
+- Ajuste de Holt-Winters e SARIMAX com ou sem sazonalidade (52 semanas)
+- Comparação de modelos e escolha do melhor
+- Previsão de 12 semanas à frente
+- Testes Ljung-Box, Jarque-Bera e Breusch-Pagan
+- Testes ADF e KPSS para estacionariedade
+
+**Saídas**:
+- relatorios/relatorio_semanal_receita.html
+- relatorios/index_semanal.html
+- Imagens relatorios/figuras_semanal/*.png
+
+### analise_2_mensal.py - Análise 2 (Sales_2019 - 12 meses)
+
+Análise específica do ano de 2019.
+
+**Processamento**:
+- Concatenação dos dados mensais
+- Divisão em nove meses de treino e três de teste
+- Ajuste de Holt-Winters e SARIMAX sem sazonalidade
+- Avaliação com MAE, RMSE e MAPE
+- Geração de previsões e gráficos de resíduos
+
+**Saídas**:
+- relatorios/analise_2_mensal.html
+- relatorios/plot_analise2.png
+- relatorios/residuos_analise2.png
+
+### index_geral.py - Índice Geral
+
+Cria um painel HTML com os links para todos os relatórios.
+
+**Saída**: relatorios/index_geral.html, contendo:
+- Análise 1: Updated_sales (relatórios semanal e mensal)
+- Análise 2: Sales_2019
+- Análise 3: Retail & Warehouse
+- Relatório de demografia (opcional)
+
+## Como Executar o Projeto
+
+### Pré-requisitos
+
+- Python 3.10 ou superior (testado em 3.12)
+
+### Instalação de Dependências
 ```bash
 pip install -r requirements.txt
 ```
 
-### 5.1 Gerar relatórios mensais (Updated_sales e Retail & Warehouse)
+### Execução dos Scripts
 
+**Gerar relatórios mensais (Updated_sales e Retail & Warehouse)**:
 ```bash
 python gerar_relatorios_series.py
 ```
 
-Saídas principais em `relatorios/`:
-
-- `relatorio_vendas_mensal_receita.html`
-- `relatorio_retail_mensal_total.html`
-- `index.html`
-
-### 5.2 Gerar relatório semanal (Updated_sales)
-
+**Gerar relatório semanal (Updated_sales)**:
 ```bash
 python relatorio_semanal.py
 ```
 
-Saídas:
-
-- `relatorio_semanal_receita.html`
-- `index_semanal.html`
-
-### 5.3 Gerar análise mensal de Sales_2019 (12 meses)
-
+**Gerar análise mensal de Sales_2019**:
 ```bash
 python analise_2_mensal.py
 ```
 
-Saída:
-
-- `relatorios/analise_2_mensal.html`
-
-### 5.4 Gerar índice geral (menu)
-
+**Gerar índice geral (menu)**:
 ```bash
 python index_geral.py
 ```
 
-Saída:
+**Saídas**: Geradas automaticamente na pasta relatorios/
 
-- `relatorios/index_geral.html`
+## Versionamento
 
----
+### Configuração Inicial do Repositório
 
-## 6. Como Fazer o Primeiro Commit neste Repositório
-
-Depois de copiar todos os arquivos deste projeto para a pasta do repositório local `Analise-Preditiva` (clonado do GitHub), execute os comandos abaixo no terminal dentro dessa pasta:
-
+Após copiar todos os arquivos para o repositório local Analise-Preditiva, execute:
 ```bash
-# 1) Adicionar todos os arquivos
 git add .
-
-# 2) Criar o primeiro commit
 git commit -m "Trabalho A3 - Analise Preditiva de Series Temporais"
-
-# 3) Definir o repositório remoto (se ainda não estiver configurado)
 git remote add origin https://github.com/codewithsouza/Analise-Preditiva.git
-
-# 4) Enviar para o GitHub (primeiro push)
 git branch -M main
 git push -u origin main
 ```
 
-Após o push, o repositório GitHub `codewithsouza/Analise-Preditiva` passará a conter todos os scripts, datasets (se desejado) e relatórios do trabalho A3. Você poderá navegar pelo código, gerar novos relatórios e anexar o link do repositório na entrega da disciplina.
+## Resultados e Conclusões
 
+O projeto apresenta um pipeline completo de análise e previsão de séries temporais, abrangendo desde a limpeza e preparação dos dados até a modelagem e validação. 
+
+Os modelos Holt-Winters e SARIMAX mostraram-se adequados para séries curtas e médias, respectivamente, com erros médios percentuais entre 10% e 15%. 
+
+A metodologia implementada permite replicação, extensão e integração com ferramentas externas de visualização e atualização periódica de dados.
 
